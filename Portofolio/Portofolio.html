@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ferzen Kusuma's Portfolio</title>
+
+        <style>
+            p {
+                text-align: justify;
+            }
+    
+            * {
+                margin: 0;
+                padding: 0px;
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+                color: white;
+            }
+
+            nav {
+                padding: 15px 10px;
+                z-index: 1000;
+            }
+
+            nav ul li {
+                margin: 0px 15px;
+            }
+
+            body {
+                padding: 100px;
+                scroll-behavior: smooth;
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-image: url('Website background.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                z-index: -2; 
+            }
+
+            html {
+                scroll-padding-top: 50px;
+            }
+
+            .content {
+                margin-top: 80px;
+            }
+
+            .gif-background {
+                width: 100%;
+                padding: 20px;
+                background: url('shooting-star.gif') no-repeat center center;
+                background-size: cover;
+                text-align: center;
+            }
+
+            .gif-background h1 {
+                color: rgba(238, 155, 30, 0.815);
+            }
+
+            .section {
+                padding: 75px;
+                background-color: #333;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .hobby {
+                position: relative;
+                height: 100vh;
+            }
+
+            .video-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+            }
+            
+
+            #jett-background-video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                top: 0;
+                left: 0;
+            }
+
+            .hobby-content {
+                position: relative;
+                z-index: 2;
+                padding: 20px;
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            .hobby-content-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 60%; 
+                height: 100%; 
+                padding: 20px;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                overflow-y: auto;
+                box-sizing: border-box;
+            }
+
+            .hobby-content .col-md-6 {
+                margin-bottom: 10px;
+            }
+
+            .video-content, .image-content {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                max-height: 200px;
+                margin-bottom: 10px; /* Space below the media */
+            }
+
+            h1 {
+                z-index: 3;
+            }
+
+            .error-message {
+                color: rgb(255, 50, 50);
+                margin-top: 5px;
+                font-size: 14px;
+            }
+
+            .loading-spinner {
+                display: none;
+                border: 4px solid rgba(0, 0, 0, 0.1); /* Light grey */
+                border-left: 4px solid #3498db; /* Blue */
+                border-radius: 50%;
+                width: 24px;
+                height: 24px;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .hidden {
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Animation for live text fade-in */
+            @keyframes slideIn {
+                0% {
+                    opacity: 0;
+                    transform: translateX(20px); /* Adjust as needed for the effect */
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            #liveText {
+                animation: fadeIn 0.5s ease-out; /* Duration of 0.5 seconds */
+            }
+
+
+        </style>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <!--Navigation bar; reference: https://getbootstrap.com/docs/4.0/components/navbar/-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#home">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#recommendations">Recommendations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#messageForm">Message me</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Text-Area">Text Area</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+
+        <div id="home" class="gif-background">
+            <h1>Welcome to Ferzen Kusuma's portfolio</h1>
+        </div>
+
+        <div id="about" class="section hidden">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <img src="Profile pic.jpg" alt="Ferzen Kusuma" class="img-fluid">
+                </div>
+
+                <div class="col-md-8 d-flex flex-column justify-content-center">
+                    <h2 style="color: red">A brief introduction</h2>
+                    <p>I was born in Jakarta, Indonesia at 8 January 2005 and I am currently pursuing a Computer Science degree at Institut Teknologi Sepuluh Nopember.
+                        The reason why I took Computer Science as my major is due to the fact that I have been surrounded and fascinated by technology since my childhood.
+                        Needless to say, it has also helped me on numerous occasions and in daily life. Therefore, I would like to give back to the community by taking on a major in Computer Science,
+                        hoping to contribute in the field of technology.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="education" class="section hidden">
+            <h1 style="color: orange; font-size: 40px;" align="center">Education</h1>
+        
+            <div class="row">
+                <!-- Elementary School -->
+                <div class="col-md-3 col-sm-12 text-center">
+                    <h3 style="color: orange">Elementary School</h3>
+                    <a href="https://www.evfialandschool.sch.id/" target="_blank"><h4>EvFiA LAND School</h4></a>
+                    <a href="https://www.evfialandschool.sch.id/" target="_blank"><img src="EvFiA LAND School logo.jpeg" width="150" height="150" title="EvFiA LAND School"></a>
+                    <ul style="text-align: left;">
+                        <li>Location: Serang, Banten</li>
+                        <li>Enrollment period: 2011 - 2017</li>
+                    </ul>
+                </div>
+        
+                <!-- Junior High School -->
+                <div class="col-md-3 col-sm-12 text-center">
+                    <h3 style="color: orange">Junior High School</h3>
+                    <h4><a href="https://jny.sch.id/home/" target="_blank">Jakarta NanYang School</a></h4>
+                    <a href="https://jny.sch.id/home/" target="_blank"><img src="JNY logo.png" width="150" height="150" title="Jakarta NanYang School"></a>
+                    <ul style="text-align: left;">
+                        <li>Location: Tangerang, Banten</li>
+                        <li>Enrollment period: 2017 - 2021</li>
+                    </ul>
+                </div>
+        
+                <!-- Senior High School -->
+                <div class="col-md-3 col-sm-12 text-center">
+                    <h3 style="color: orange">Senior High School</h3>
+                    <h4><a href="https://www.uphcollege.com/home" target="_blank">UPH College</a></h4>
+                    <a href="https://www.uphcollege.com/home" target="_blank"><img src="UPHC logo.jpeg" width="150" height="150" title="UPH College"></a>
+                    <ul style="text-align: left;">
+                        <li>Location: Tangerang, Banten</li>
+                        <li>Enrollment period: 2021 - 2023</li>
+                    </ul>
+                </div>
+        
+                <!-- Undergraduate Program -->
+                <div class="col-md-3 col-sm-12 text-center">
+                    <h3 style="color: orange">Undergraduate</h3>
+                    <h4><a href="https://www.its.ac.id/" target="_blank">Institut Teknologi Sepuluh Nopember</a></h4>
+                    <a href="https://www.its.ac.id/" target="_blank"><img src="ITS logo.png" height="150" title="Institut Teknologi Sepuluh Nopember"></a>
+                    <ul style="text-align: left;">
+                        <li>Location: Surabaya, Jawa Timur</li>
+                        <li>Enrollment period: 2023 - Now</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="achievements" class="section hidden">
+            <!--Achievements-->
+            <h1 style="color: gold">Achievements</h1>
+
+            <ul>
+                <li>Silver medal (Top 20%) in SEAMO 2019</li>
+                <li>Cambridge IGCSE 7 Distinctions Award (2021)</li>
+            </ul>
+
+        </div>
+
+        <!--Hobbies-->
+        <div id="hobbies" class="section hobby hidden">
+            
+
+            <div class="video-background">
+                <video autoplay muted loop id="jett-background-video">
+                    <source src="Jett background.mp4" type="video/mp4">
+                    Browser does not support video tag
+                </video>
+            </div>
+
+
+            <div class="hobby-content-container">
+
+                <h1 align="center" style="color: #45b7d1;">Hobbies</h1>
+
+                <div class="row hobby-content">
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <video controls class="video-content">
+                            <source src="Valo clip.mp4" type="video/mp4">
+                            Browser does not support video tag
+                        </video>
+                        <h3>Gaming</h3>
+                    </div>
+                        
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="Badminton.jpeg" class="image-content">
+                        <h3>Badminton</h3>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="Archery.jpg" class="image-content">
+                        <h3>Archery</h3>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="Demon slayer.jpg" class="image-content">
+                        <h3>Watching Anime</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="recommendations" class="section hidden">
+            <!--My personal Top 3-->
+            <h1>Personal Top 3 Anime</h1>
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-12 text-center">
+                    <h3>Horimiya</h3>
+                    <img src="Horimiya.jpg" class="image-content">
+                    <p>
+                        One of my personal favourites; an anime that tells about a high school couple with contrasting personalities. 
+                        It has a well-written plot and the character interactions are captivating. At one moment, the Anime provides comedic relief. 
+                        At the other, it makes your heart melt.
+                    </p>
+                </div>
+        
+                    
+                <div class="col-md-4 col-sm-12 text-center">
+                    <h3>Demon slayer</h3>
+                    <img src="Tanjiro's Hinokami Kagura.jpeg" class="image-content">
+                    <p>
+                        What else can I say? The animators behind the production did a splendid job with their eye-catching animations.
+                    </p>
+                </div>
+                    
+                <div class="col-md-4 col-sm-12 text-center">
+                    <h3>Solo Leveling</h3>
+                    <img src="Solo leveling.jpeg" class="image-content">
+                    <p>
+                        An Anime adapted from a Korean Manhwa, it tells the tale of the main character going from the weakest to the strongest
+                        by incorporating gaming elements such as leveling up, which is exclusive to the main character. 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="messageForm" class="section container-fluid hidden">
+
+            <h1>Message me</h1>
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                    <form id="contactForm" action="https://debug.nafkhanzam.com/web-programming-e03" method="POST">
+                        <div class="mb-3">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" class="form-control">
+                            <div id="name_error" class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                            <div id="email_error" class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message">Message:</label><br>
+                            <textarea id="message" name="message" rows="4" class="form-control"></textarea>
+                            <div id="message_error" class="error-message"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span id="send_button_text">Send</span>
+                            <div class="loading-spinner" id="loading_spinner"></div>
+                        </button>
+                        <div id="formStatus" class="success-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="Text-Area" class="section hidden">
+
+            <h1>Your personal text area</h1>
+
+            <div class="mb-3">
+                <label for="text-field">Text Field</label>
+                <textarea class="form-control" id="persistent-textarea" rows="3" placeholder="Type something..."></textarea>
+            </div>
+
+            <h5>Text:</h5>
+            <p id="liveText"></p>
+
+        </div>
+
+
+
+        <div id="contact" class="section hidden">           
+            <!--My contact-->
+            <address>
+                <h3>Contact me</h3>
+
+                <table>
+                    <tr align="left">
+                        <th><img src="Gmail logo.jpeg" width="25" height="25"></th>
+                        <th><a href="mailto:ferzenkusuma52@gmail.com">ferzenkusuma52@gmail.com</a></th>
+                    </tr>
+    
+                    <tr align="left">
+                        <th><img src="Whatsapp logo.jpg" width="25" height="25"></th>
+                        <th><a href="https://api.whatsapp.com/send/?phone=6287876361570&text&type=phone_number&app_absent=0" target="_blank">087876361570</a></th>
+                    </tr>
+    
+                    <tr align="left">
+                        <th><img src="Instagram logo.jpeg" width="25" height="25"></th>
+                        <th><a href="https://www.instagram.com/ferzen.k?igsh=ejY0NmpweXh6OXY3" target="_blank">@ferzen.k</a></th>
+                    </tr>
+                </table>
+            </address>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+   
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                const form = document.getElementById("contactForm");
+                const nameField = document.getElementById("name");
+                const emailField = document.getElementById("email");
+                const messageField = document.getElementById("message");
+
+                const nameError = document.getElementById("name_error");
+                const emailError = document.getElementById("email_error");
+                const messageError = document.getElementById("message_error");
+                const formStatus = document.getElementById("formStatus");
+                const spinner = document.getElementById("loading_spinner");
+                const buttonText = document.getElementById("send_button_text");
+
+                const sections = document.querySelectorAll('.hidden');
+
+                const observer = new IntersectionObserver((entries, observer) => { //IntersectionObserver is an API used to track visibility of elements
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting){
+                            entry.target.classList.add('visible');
+                        }
+                        else{
+                            entry.target.classList.remove('visible');
+                        }
+                    });
+                }, 
+                {
+                    threshold: 0.1  // Trigger when 10% of the element is visible
+                });
+
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
+
+
+                // Live text area
+                const textarea = document.getElementById('persistent-textarea');
+                const liveText = document.getElementById('liveText');
+
+                textarea.value = localStorage.getItem('savedText') || '';
+
+                liveText.textContent = textarea.value;
+
+                textarea.addEventListener('input', () => {
+                    localStorage.setItem('savedText', textarea.value);
+                    liveText.textContent = textarea.value;
+
+                    liveText.style.animation = 'none';
+                    liveText.offsetHeight; 
+                    liveText.style.animation = 'slideIn 0.5s ease-out';
+                });                
+                
+        
+                form.addEventListener("submit", function(event){
+                    event.preventDefault();
+
+                    let isValid = true;
+
+                    nameError.textContent = "";
+                    emailError.textContent = "";
+                    messageError.textContent = "";
+                    formStatus.textContent = "";
+                    spinner.style.display = "inline-block";
+                    buttonText.style.display = "none";
+                    
+        
+                    // Validate if message field is empty
+                    if(nameField.value.trim() === ""){
+                        nameError.textContent = "Name cannot be empty";
+                        isValid = false;
+                    }
+
+                    if(emailField.value.trim() === ""){
+                        emailError.textContent = "Email cannot be empty";
+                        isValid = false;
+                    }
+
+                    if(messageField.value.trim() === ""){
+                        messageError.textContent = "Message cannot be empty";
+                        isValid = false;
+                    }
+
+                    if(!isValid){
+                        spinner.style.display = "none";
+                        return;
+                    }
+
+                    const formData = new FormData(form);
+
+                    fetch("https://debug.nafkhanzam.com/web-programming-e03", {
+                        method: "POST",
+                        body: formData,
+                    })
+
+                    .then(response => {
+                        if(response.ok){
+                            formStatus.style.color = "green";
+                            formStatus.textContent = "Sent Successfully!";
+                            form.reset();
+                        }
+
+                        else{
+                            formStatus.style.color = "red";
+                            formStatus.textContent = "Message failed to send, please try again...";
+                        }
+                    })
+
+                    // Used in case of network or other errors
+                    .catch(error => {
+                        formStatus.style.color = "red";
+                        formStatus.textContent = "An error occurred: " + error.message;
+                    })
+
+                    .finally(() => {
+                        spinner.style.display = "none";
+                        buttonText.style.display = "inline";
+                    });
+
+                });
+
+            });
+        </script>
+   
+    </body>
+</html>
